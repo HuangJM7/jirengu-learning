@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            background-color: aqua;
+        }
+    .main{
+        height: 200px;
+        width: 200px;
+        background:linear-gradient(black 50%, white 0) ;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    .left{
+        position: absolute;
+        margin-top: 50px;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: white;
+    }
+    .right{
+        position: absolute;
+        margin-top: 50px;
+        margin-left: 100px;
+        height: 100px;
+        border-radius: 50%;
+        width: 100px;
+        background-color: black;
+    }
+    .conter{
+        position: absolute;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        background-color: rgb(61, 182, 25);
+        margin: 37px;
+    }
+    .left .conter{
+        background-color: black;
+    }
+    .right .conter{
+        background-color: white;
+    }
+    </style>
+</head>
+<body>
+    <div class="main">
+<div class="left"><div class="conter"></div></div>
+<div class="right"><div class="conter"></div></div>
+    </div>
+</body>
+</html>
