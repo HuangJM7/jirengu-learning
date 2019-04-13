@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #canva {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canva" width="300" height="300"></canvas>
+
+    <script>
+        var canva = document.getElementById("canva");
+        var context = canva.getContext('2d');
+
+        function drawCircle(x, y, r) {
+            context.beginPath();
+            context.arc(x, y, r, 0, 2 * Math.PI)
+            context.stroke()
+        }
+        var painting = false;
+
+        canva.onmousedown = function (e) {
+            painting = true;
+            var x = e.clientX
+            var y = e.clientY
+            drawCircle(x, y, 1)
+        }
+        canva.onmousemove = function (e) {
+            if (painting) {
+                var x = e.clientX
+                var y = e.clientY
+                drawCircle(x, y, 1)
+            }
+        }
+        canva.onmouseup = function (e) {
+            painting = false;
+        }
+    </script>
+</body>
+
+</html>
