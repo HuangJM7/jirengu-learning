@@ -53,7 +53,7 @@
 				hash[key] = x  // hash 变更
 				img2.src = 'http://'+x + '/favicon.ico'
 				img2.onerror = function(xxx){
-					xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+					xxx.target.src = 'none.png'
 				}
 				localStorage.setItem('zzz', JSON.stringify(hash))
 			}
@@ -64,10 +64,10 @@
 			if(domain){
 				img.src = 'http://'+ domain + '/favicon.ico'
 			}else{
-				img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+				img.src = 'none.png'
 			}
 			img.onerror = function(xxx){
-				xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+				xxx.target.src = 'none.png'
 			}
 			return img
 		}
