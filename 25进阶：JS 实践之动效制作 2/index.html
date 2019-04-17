@@ -17,6 +17,7 @@
       overflow: hidden;
     }
 
+    /* 加载动画的背景 */
     .site-welcome {
       display: none;
       position: fixed;
@@ -88,7 +89,7 @@
     <div class="mask"></div>
   </div>
   <main>
-    <div id="siteAbout" class="userCard">
+    <div id="siteAbout" class="userCard offset">
       <div class="pictureAndText clearfix">
         <div class="picture">
           <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
@@ -141,7 +142,7 @@
     </p>
 
   </main>
-  <section id="siteSkills" class="skills">
+  <section id="siteSkills" class="skills offset">
     <h2>技能</h2>
     <ol class="clearfix">
       <li>
@@ -194,7 +195,7 @@
       </li>
     </ol>
   </section>
-  <section id="siteWorks" class="portfolio">
+  <section id="siteWorks" class="portfolio offset">
     <h2>作品集</h2>
     <nav>
       <ol class="clearfix">
@@ -241,14 +242,22 @@
       siteWelcome.classList.remove('active')
     }, 1000);
 
+    removeOffset();
+
+    //通过scrollY决定Nav吸顶栏样式
     window.onscroll = function (e) {
       if (window.scrollY == 0) {
         topNavBar.classList.remove('sticky')
       } else {
         topNavBar.classList.add('sticky')
       }
+      // console.log(window.scrollY);
+      navHeightlight();
+      removeOffset();
     }
 
+
+    // Nav栏鼠标动画
     let LiTags = document.querySelectorAll('nav.menu >ul>li')
     for (let i = 0; i < LiTags.length; i++) {
       LiTags[i].onmouseenter = function (e) {
@@ -273,11 +282,11 @@
         // window.scrollTo(0, top)     //1.直接滚到到指定位置
 
         //5.  tween.js 的简化版,animation.js
-
         let animationScroll = function () {
-          let T=Math.abs(top - 80 - window.scrollY)/2
+          let T = Math.abs(top - 80 - window.scrollY) / 2;
+          if (T < 500) T = 300;
           Math.animation(window.scrollY, top - 80, function (value) {
-            window.scrollTo(0,value)
+            window.scrollTo(0, value)
           }, 'Quad.easeOut', T);
         }
         animationScroll();
@@ -358,6 +367,58 @@
 
 
 
+      }
+    }
+
+
+    //页面内容与Nav栏的高亮互动
+    let navHeightlight = function () {
+      let About = document.querySelector('a[href="#siteAbout"]').parentElement
+      let Skills = document.querySelector('a[href="#siteSkills"]').parentElement
+      let Works = document.querySelector('a[href="#siteWorks"]').parentElement
+      let allRemove = function () {
+        About.classList.remove('heightLight')
+        Skills.classList.remove('heightLight')
+        Works.classList.remove('heightLight')
+      }
+      switch (true) {
+        case 10 > window.scrollY:
+          allRemove();
+          break;
+        case 10 < window.scrollY && window.scrollY < 700:
+          allRemove();
+          About.classList.add('heightLight')
+          break;
+        case 700 < window.scrollY && window.scrollY < 1200:
+          allRemove();
+          Skills.classList.add('heightLight')
+          break;
+        case 1200 < window.scrollY && window.scrollY < 2000:
+          allRemove();
+          Works.classList.add('heightLight')
+          break;
+      }
+
+    }
+
+    //页面元素从下方出现,利用window.scrollY判断去除offset的时机
+
+    function removeOffset() {
+      switch (true) {
+        case 900 < window.scrollY:
+          siteAbout.classList.remove('offset')
+          siteSkills.classList.remove('offset')
+          siteWorks.classList.remove('offset')
+          break;
+        case 550 < window.scrollY:
+          siteAbout.classList.remove('offset')
+          siteSkills.classList.remove('offset')
+          break;
+        case 0 == window.scrollY:
+          setTimeout(() => {
+            siteAbout.classList.remove('offset')
+          }, 1000);
+          break;
       }
     }
   </script>
