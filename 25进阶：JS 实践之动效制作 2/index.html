@@ -250,13 +250,9 @@
     for (let i = 0; i < LiTags.length; i++) {
       LiTags[i].onmouseenter = function (e) {
         e.currentTarget.classList.add('active')
-        console.log(e.currentTarget);
-        
       }
       LiTags[i].onmouseleave = function (e) {
         e.currentTarget.classList.remove('active')
-        console.log(e.currentTarget);
-        
       }
     }
 
@@ -267,15 +263,35 @@
         e.preventDefault();
         let a = e.currentTarget;
         let href = a.getAttribute('href')
-        let element=document.querySelector(href)
-        let top= element.offsetTop;
-        window.scrollTo(0,top-80)
+        let element = document.querySelector(href)
+        let top = element.offsetTop;
+        // window.scrollTo(0, top)     //直接滚到到指定位置
 
+
+        
+        let n = 25;
+        let t = 500 / n;
+        let currentTop=window.scrollY;
+        let step = (top-80 - currentTop) / n
+        let m = 0;
+        let id = setInterval(() => {
+          if (m == n) {
+            clearInterval(id)
+            return
+          }
+          m++
+          window.scrollTo(0, currentTop + step * m)
+        }, t);
+
+        
       }
     }
+
+
+
+
   </script>
   <script src="//at.alicdn.com/t/font_451045_32zbfqegtq3t0529.js"></script>
 </body>
 
 </html>
-
