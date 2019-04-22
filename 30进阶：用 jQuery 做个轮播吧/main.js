@@ -1,17 +1,17 @@
 var allButtons = $("#buttons>span") //获取全部按钮
 for (let i = 0; i < allButtons.length; i++) {
-    $(allButtons[i]).on('click', function (e) {
+    $(allButtons[i]).on('click', function (e) {//for循环给每个button添加对应点击事件
         $('.images').css({
-            transform: "translate(" + i * -300 + "px)"
+            transform: "translate(" + i * -300 + "px)"//设置轮播图CSS
         })
         n = i;
-        activeButton(allButtons.eq(n % size))
+        activeButton(allButtons.eq(n % size)) //设置按钮高亮
     })
 }
 var n = 0;
 var size = allButtons.length;
 
-allButtons.eq(n % size).trigger('click')
+allButtons.eq(n % size).trigger('click')//初始化设置按钮高亮
 
 var timerId = setTimer()
 
