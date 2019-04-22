@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.2)
+}
+
+button {
+    display: inline-block;
+}
+
+.wrap {
+    height: 70vh;
+    width: 60vw;
+    margin: 60px auto;
+    background: white;
+    border: 1px red solid;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrap>img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: all 1500ms;
+    top: 0;
+}
+
+
+.wrap>img.current {
+    left: 0;
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.wrap>img.leave {
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.wrap>img.enter {
+    transform: translateX(100%);
+}
