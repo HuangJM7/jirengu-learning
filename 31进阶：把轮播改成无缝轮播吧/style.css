@@ -5,11 +5,13 @@
 }
 
 body {
-    background: rgba(0, 0, 0, 0.2)
+    background: rgba(0, 0, 0, 0.2);
 }
 
 button {
-    display: inline-block;
+    position: absolute;
+    top: 40%;
+    right: 18%;
 }
 
 .wrap {
