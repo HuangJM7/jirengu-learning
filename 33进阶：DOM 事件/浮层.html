@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px red solid;
+            height: 30px;
+            width: 100px;
+        }
+
+
+        #button {}
+
+        #memu {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="button">button</div>
+    <div id="memu">memu</div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.js"></script>
+    <script>
+        $(button).on('click', function () {
+            $(memu).toggle()
+
+            if (memu.style.display === 'block') {
+
+                console.log(memu.style.display);
+                setTimeout(function () {
+                    $(document).one('click', function () {
+                        $(memu).hide()
+                    })
+                }, 0)
+            }
+
+        })
+        $(memu).on('click', false)
+    </script>
+</body>
+
+</html>
