@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css">
+    <script src="./jquery.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="gallery">
+            <div id="slides">
+                <div class="slide"><img
+                        src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/macbook.jpg"
+                        width="920" height="400" alt="side" /></div>
+                <div class="slide"><img
+                        src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/iphone.jpg"
+                        width="920" height="400" alt="side" /></div>
+                <div class="slide"><img
+                        src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/imac.jpg"
+                        width="920" height="400" alt="side" /></div>
+                <div class="slide"><img
+                        src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/info.jpg"
+                        width="920" height="400" alt="side" /></div>
+
+            </div>
+
+            <div id="menu">
+                <ul>
+                    <li class="menuItem"><a href=""><img
+                                src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/thumb_macbook.png"
+                                alt="thumbnail" /></a></li>
+                    <li class="menuItem"><a href=""><img
+                                src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/thumb_iphone.png"
+                                alt="thumbnail" /></a>
+                    </li>
+                    <li class="menuItem"><a href=""><img
+                                src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/thumb_imac.png"
+                                alt="thumbnail" /></a>
+                    </li>
+                    <li class="menuItem"><a href=""><img
+                                src="https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/sample_slides/thumb_about.png"
+                                alt="thumbnail" /></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            /* 文档准备就绪 */
+
+            var totWidth = 0;
+            var positions = new Array();
+
+            $('#slides .slide').each(function (i) {
+                /* 循环遍历所有幻灯片，totWIdth保存总宽度,position保存位置 */
+                positions[i] = totWidth;
+                totWidth += $(this).width();
+
+                if (!$(this).width()) {
+                    alert("Please, fill in width & height for all your images!");
+                    return false;
+                }
+            });
+
+            $('#slides').width(totWidth);
+            /* 将cotnainer div的宽度设为总精确宽度 */
+
+
+            $('#menu ul li a').click(function (e) {
+                /* 缩略图点击事件 */
+
+                var pos = $(this).parent().prevAll('.menuItem').length;//被点击a标签的父标签即缩略图,之前的同胞元素集合,得到索引
+
+                $('#slides').stop().animate({//stop()停止当前动画,animate()执行动画
+                    marginLeft: -positions[pos] + 'px'
+                }, 450);
+
+
+                e.preventDefault();//阻止a标签默认事件
+            });
+
+        });
+    </script>
+
+
+</body>
+
+</html>
