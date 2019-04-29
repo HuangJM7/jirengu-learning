@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>个人简历</title>
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./loading.css">
+  <script src="./tween.js"></script>
+  <script src="./animation.js"></script>
+
+  <style type="text/css">
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    /* 加载动画的背景 */
+    .site-welcome {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: gray;
+      z-index: 2;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .site-welcome.active {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="siteWelcome" class="site-welcome active">
+    <div class="loading"></div>
+  </div>
+
+  <div class="topNavBar" id="topNavBar">
+    <div class="topNavBar-inner clearfix">
+      <a class="logo" href="#" alt="logo" style="float: left;">
+        <span class="rs">RS</span>
+        <span class="card">card</span>
+      </a>
+      <nav class="menu" style="float: right;">
+        <ul class="clearfix">
+          <li>
+            <a href="#siteAbout">关于</a>
+          </li>
+          <li>
+            <a href="#siteSkills">技能</a>
+          </li>
+          <li>
+            <a href="#siteWorks">作品</a>
+            <ul>
+              <li>作品1</li>
+              <li>作品2</li>
+              <li>作品3</li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">博客</a>
+            <ul>
+              <li>博客1</li>
+              <li>博客2</li>
+              <li>博客3</li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">日历</a>
+          </li>
+          <li>
+            <a href="#">联系方式</a>
+          </li>
+          <li>
+            <a href="#">其他</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="mask"></div>
+  </div>
+  <main>
+    <div id="siteAbout" class="userCard offset">
+      <div class="pictureAndText clearfix">
+        <div class="picture">
+          <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
+        </div>
+        <div class="text">
+          <span class="welcome">Hello
+            <span class="triangle"></span>
+          </span>
+          <h1>name</h1>
+          <p>前端开发工程师</p>
+          <hr>
+          <dl>
+            <dt>年龄</dt>
+            <dd>18</dd>
+            <dt>所在城市</dt>
+            <dd>北京</dd>
+            <dt>邮箱</dt>
+            <dd>@mail.com</dd>
+            <dt>手机</dt>
+            <dd>number</dd>
+          </dl>
+        </div>
+      </div>
+      <footer class="media">
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-Ankerwebicon-"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-weibo"></use>
+          </svg>
+        </a>
+      </footer>
+    </div>
+
+    <p class="downloadResume-wrapper">
+      <a class="downloadResume" href="./resume.pdf" target="_blank" download>下载 PDF 简历</a>
+    </p>
+
+    <p class="selfIntroduction">
+       资深前端工程师
+      <br> 技能：前端开发，Rails 开发，Node.js 开发
+    </p>
+
+  </main>
+  <section id="siteSkills" class="skills offset">
+    <h2>技能</h2>
+    <ol class="clearfix">
+      <li>
+        <h3>
+          HTML 5 &amp; CSS 3
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 10%;"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          JavaScript
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 20%"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          jQuery
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 30%"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          Vue.js
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 40%"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          React.js
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 50%"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          Node.js
+        </h3>
+        <div class="progressBar">
+          <div class="progress" style="width: 60%"></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section id="siteWorks" class="portfolio offset">
+    <h2>作品集</h2>
+    <nav>
+      <ol class="clearfix">
+        <li id="portfolio1">所有</li>
+        <li id="portfolio2">框架</li>
+        <li id="portfolio3">原生JS&amp;CSS</li>
+      </ol>
+      <div id="portfolioBar" class="bar state-1">
+        <div class="bar-inner"></div>
+      </div>
+    </nav>
+    <script>
+      portfolio1.onclick = function () {
+        portfolioBar.className = 'bar state-1'
+      }
+      portfolio2.onclick = function () {
+        portfolioBar.className = 'bar state-2'
+      }
+      portfolio3.onclick = function () {
+        portfolioBar.className = 'bar state-3'
+      }
+    </script>
+
+
+    <div class="works" style="height: 597px;">
+      <div class="big" style="top: 0; left: 0;">
+        <img src="./img/1.jpg" alt="作品1">
+      </div>
+      <div class="small" style="top: 0; left: 645px;">
+        <img src="./img/2.jpg" alt="作品2">
+      </div>
+      <div class="small" style="top: 312px; left: 645px;">
+        <img src="./img/3.jpg" alt="作品3">
+      </div>
+    </div>
+
+  </section>
+  <script>
+    // window.onload=function(){
+    //   siteWelcome.classList.remove('active')
+    // }
+
+    setTimeout(() => {
+      siteWelcome.classList.remove('active')
+    }, 1000);
+
+    removeOffset();
+
+    //通过scrollY决定Nav吸顶栏样式
+    window.onscroll = function (e) {
+      if (window.scrollY == 0) {
+        topNavBar.classList.remove('sticky')
+      } else {
+        topNavBar.classList.add('sticky')
+      }
+      // console.log(window.scrollY);
+      navHeightlight();
+      removeOffset();
+    }
+
+
+    // Nav栏鼠标动画
+    let LiTags = document.querySelectorAll('nav.menu >ul>li')
+    for (let i = 0; i < LiTags.length; i++) {
+      LiTags[i].onmouseenter = function (e) {
+        e.currentTarget.classList.add('active')
+      }
+      LiTags[i].onmouseleave = function (e) {
+        e.currentTarget.classList.remove('active')
+      }
+    }
+
+    //点击nav滚动到对应页面
+    let scrollSwitch = true; //滚动开关
+    let aTags = document.querySelectorAll('nav.menu>ul>li>a')
+    for (let i = 0; i < aTags.length; i++) {
+      aTags[i].onclick = function (e) {
+        e.preventDefault();
+        let a = e.currentTarget;
+        let href = a.getAttribute('href')
+        let element = document.querySelector(href)
+
+        let top = element.offsetTop;
+        // window.scrollTo(0, top)     //1.直接滚到到指定位置
+
+        //5.  tween.js 的简化版,animation.js
+        let animationScroll = function () {
+          let T = Math.abs(top - 80 - window.scrollY) / 2;
+          if (T < 500) T = 300;
+          Math.animation(window.scrollY, top - 80, function (value) {
+            window.scrollTo(0, value)
+          }, 'Quad.easeOut', T);
+        }
+        animationScroll();
+
+
+
+
+
+        //4.即插即用的缓动 张鑫旭
+        // requestAnimationFrame的兼容处理
+        if (!window.requestAnimationFrame) {
+          requestAnimationFrame = function (fn) {
+            setTimeout(fn, 17);
+          };
+        }
+        // 滚动缓动函数定义
+        // rate表示缓动速率，默认是2
+        var scrollNav = function (rate) {
+          var scroll = function () {
+            let way = top - 80 - window.scrollY;
+            // scrollTop = scrollTop + (0 - scrollTop) / (rate || 2);
+            let step = window.scrollY + (top - 80 - window.scrollY) / (rate || 2)
+            // 临界判断，终止动画
+            if (Math.abs(way) < 7) {
+              window.scrollTo(0, top - 80);
+              scrollSwitch = true;
+              return;
+            }
+            window.scrollTo(0, step)
+            // 动画gogogo!
+            requestAnimationFrame(scroll);
+          };
+          scroll();
+        };
+        //使用函数4
+        // if (scrollSwitch) {
+        //   scrollSwitch = false;
+        //   scrollNav(8);
+        // }
+
+
+
+
+
+        // 3. 根据距离决定滚动时间与次数
+        // let way = top - 80 - window.scrollY;
+        // let t = Math.floor(Math.abs(way) / 20) // 1000px 1秒 50次
+        // if (t > 50) t = 50;
+        // console.log(t);
+        // let step = way / t;
+        // let m = 0;
+        // let id = setInterval(() => {
+        //   if (m == t) {
+        //     clearInterval(id)
+        //     return
+        //   }
+        //   m++
+        //   window.scrollTo(0, window.scrollY + step)
+        // }, 10)
+
+
+        // let n = 25;//次数      2.定总时间
+        // let t = 500 / n;//总时间5毫秒,每次滚动时间
+        // let currentTop=window.scrollY;//当前Y轴距离
+        // let step = (top-80 - currentTop) / n  //
+        // let m = 0;
+        // let id = setInterval(() => {
+        //   if (m == n) {
+        //     clearInterval(id)
+        //     return
+        //   }
+        //   m++
+        //   window.scrollTo(0, currentTop + step * m)
+        // }, t);
+
+
+
+
+
+
+      }
+    }
+
+
+    //页面内容与Nav栏的高亮互动
+    let navHeightlight = function () {
+      let About = document.querySelector('a[href="#siteAbout"]').parentElement
+      let Skills = document.querySelector('a[href="#siteSkills"]').parentElement
+      let Works = document.querySelector('a[href="#siteWorks"]').parentElement
+      let allRemove = function () {
+        About.classList.remove('heightLight')
+        Skills.classList.remove('heightLight')
+        Works.classList.remove('heightLight')
+      }
+      switch (true) {
+        case 10 > window.scrollY:
+          allRemove();
+          break;
+        case 10 < window.scrollY && window.scrollY < 700:
+          allRemove();
+          About.classList.add('heightLight')
+          break;
+        case 700 < window.scrollY && window.scrollY < 1200:
+          allRemove();
+          Skills.classList.add('heightLight')
+          break;
+        case 1200 < window.scrollY && window.scrollY < 2000:
+          allRemove();
+          Works.classList.add('heightLight')
+          break;
+      }
+
+    }
+
+    //页面元素从下方出现,利用window.scrollY判断去除offset的时机
+
+    function removeOffset() {
+      switch (true) {
+        case 900 < window.scrollY:
+          siteAbout.classList.remove('offset')
+          siteSkills.classList.remove('offset')
+          siteWorks.classList.remove('offset')
+          break;
+        case 550 < window.scrollY:
+          siteAbout.classList.remove('offset')
+          siteSkills.classList.remove('offset')
+          break;
+        case 0 == window.scrollY:
+          setTimeout(() => {
+            siteAbout.classList.remove('offset')
+          }, 1000);
+          break;
+      }
+    }
+  </script>
+  <script src="//at.alicdn.com/t/font_451045_32zbfqegtq3t0529.js"></script>
+</body>
+
+</html>
