@@ -230,9 +230,24 @@
         <img src="./img/3.jpg" alt="作品3">
       </div>
     </div>
-
   </section>
 
+  <section class="message">
+    <h2>留言</h2>
+    <ol id="messageList">
+
+    </ol>
+    <form action="" id="postMessageForm">
+      <label>name
+        <input type="text" name="name">
+      </label>
+      <label>content
+        <input type="textarea" name="content">
+      </label>
+      <input type="submit" value="提交">
+    </form>
+
+  </section>
 
 
   <script src="./js/tween.js"></script>
@@ -241,17 +256,21 @@
   <script src="./js/smoothly-navigation.js"></script>
   <script src="./js/topbar-heightlight.js"></script>
   <script src="./js/sticky-topbar.js"></script>
+
+  <!-- 存储服务 -->
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script>
+  <script src="./js/message.js"></script>
+
   <script>
     // window.onload=function(){
     //   siteWelcome.classList.remove('active')
     // }
-
     setTimeout(() => {
       siteWelcome.classList.remove('active')
     }, 1000);
 
     removeOffset();
-    
+
     // Nav栏鼠标动画
     let LiTags = document.querySelectorAll('nav.menu >ul>li')
     for (let i = 0; i < LiTags.length; i++) {

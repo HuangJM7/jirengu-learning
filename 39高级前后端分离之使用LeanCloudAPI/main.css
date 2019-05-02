@@ -430,6 +430,32 @@ section.portfolio .works>.small {
   position: absolute;
 }
 
+
+section.message>h2 {
+  text-align: center;
+  color: #3d4451;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+section.message ol {
+  max-width: 700px;
+  margin: 0 auto;
+}
+section.message ol li {
+  padding: 10px;
+}
+
+section.message>form {
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+
+
+
+
 #siteAbout,
 #siteSkills,
 #siteWorks {
