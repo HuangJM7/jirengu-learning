@@ -1,0 +1,8 @@
+.main {
+  color: black; }
+  .main .left {
+    color: red; }
+  .main .right {
+    color: blue; }
+  .main .middle {
+    color: yellow; }
