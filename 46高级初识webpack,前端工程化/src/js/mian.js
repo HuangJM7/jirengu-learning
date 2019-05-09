@@ -3,41 +3,41 @@ function uniq(arr) {
     return [...new Set(arr)]
 }
 
-class Animal {
-    // 构造函数，实例化的时候将会被调用，如果不指定，那么会有一个不带参数的默认构造函数.
-    constructor(name, color) {
-        this.name = name;
-        this.color = color;
-    }
-    // toString 是原型对象上的属性
-    toString() {
-        console.log('name:' + this.name + ',color:' + this.color);
+// es6的Generator函数异步
 
-    }
+function* a() {
+    yield console.log(1)
+    yield console.log(2)
+
 }
 
-var animal = new Animal('dog', 'white'); //实例化Animal
-animal.toString();
+var aa = a()
+aa.next()
+aa.next()
 
-console.log(animal.hasOwnProperty('name')); //true
-console.log(animal.hasOwnProperty('toString')); // false
-console.log(animal.__proto__.hasOwnProperty('toString')); // true
+// es8的asyns/await异步
 
-class Cat extends Animal {
-    constructor(action) {
-        // 子类必须要在constructor中指定super 函数，否则在新建实例的时候会报错.
-        // 如果没有置顶consructor,默认带super函数的constructor将会被添加、
-        super('cat', 'white');
-        this.action = action;
-    }
-    toString() {
-        console.log(super.toString());
-    }
+const timeout = async ms => {
+    await new Promise((resolve) => {
+        setTimeout(resolve, ms);
+
+    });
+
 }
 
-var cat = new Cat('catch')
-cat.toString();
+async function asyncP(value, ms, ms2) {
+    // 顺序执行
+    await timeout(ms);
+    console.log(value);
+    await timeout(ms2);
+    console.log(ms2);
 
-// 实例cat 是 Cat 和 Animal 的实例，和Es5完全一致。
-console.log(cat instanceof Cat); // true
-console.log(cat instanceof Animal); // true
+    // 并行执行
+    await Promise.all([
+        timeout(ms),
+        timeout(ms2)
+
+    ]);
+
+}
+asyncP('hello world', 5000, 3000);
