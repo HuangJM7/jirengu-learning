@@ -5,11 +5,13 @@
 
 命令行
 ```
-使用webpack
 npm init
 npm install --save-dev webpack
-npm install webpack-cli --save-dev
-npm install webpack-cli -D   在开发环境中局部安装webpack-cli
+
+在开发环境中局部安装webpack-cli
+npm install webpack-cli --save-dev  等同=>
+npm install webpack-cli -D   
+
 
 npm install --save-dev css-loader style-loader postcss-loader sass-loader
 npm install sass-loader node-sass webpack --save-dev
@@ -26,7 +28,7 @@ npx webpack 等同于 node_mudoles/.bin/webpack
 
 ```
 
-webpack.config.js
+webpack.config.js  直接搜索sass-loader  babel-loader
 ```
 const path = require('path');
 
