@@ -1,33 +1,3 @@
-## 习题使用 webpack
-1. 用 babel-loader 把 JS 代码转译一下
-2. 用 sass-loader 把 SCSS 转译为 CSS
-
-
-命令行
-```
-使用webpack
-npm init
-npm install --save-dev webpack
-npm install webpack-cli --save-dev
-npm install webpack-cli -D   在开发环境中局部安装webpack-cli
-
-npm install --save-dev css-loader style-loader postcss-loader sass-loader
-npm install sass-loader node-sass webpack --save-dev
-
-webpack 3.x | babel-loader 8.x | babel 7.x
-npm install babel-loader@8.0.0-beta.0 @babel/core @babel/preset-env webpack
-
-webpack 3.x babel-loader 7.x | babel 6.x
-npm install babel-loader babel-core babel-preset-env webpack
-
-启动本地webpack
-npx webpack 等同于 node_mudoles/.bin/webpack
-
-
-```
-
-webpack.config.js
-```
 const path = require('path');
 
 module.exports = {
@@ -61,4 +31,3 @@ module.exports = {
 
     }
 };
-```
