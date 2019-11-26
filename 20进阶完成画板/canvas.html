@@ -164,36 +164,35 @@
             a.target="_blank"
             a.click()
         }
-        black.onclick = function (e) {
-            context.fillStyle = 'black';
-            context.strokeStyle = 'black';
+        function removeActive(){
             black.classList.add('active');
             red.classList.remove('active')
             blue.classList.remove('active')
             seletColor.classList.remove('active')
         }
+        black.onclick = function (e) {
+            context.fillStyle = 'black';
+            context.strokeStyle = 'black';
+            removeActive()
+            black.classList.add('active');
+
+        }
         red.onclick = function (e) {
             context.fillStyle = 'red';
             context.strokeStyle = 'red';
+            removeActive()
             red.classList.add('active');
-            black.classList.remove('active')
-            blue.classList.remove('active')
-            seletColor.classList.remove('active')
         }
         blue.onclick = function (e) {
             context.fillStyle = 'blue';
             context.strokeStyle = 'blue';
+            removeActive()
             blue.classList.add('active');
-            red.classList.remove('active')
-            black.classList.remove('active')
-            seletColor.classList.remove('active')
         }
         seletColor.onclick = function () {
             color.click();
+            removeActive()
             seletColor.classList.add('active');
-            red.classList.remove('active')
-            blue.classList.remove('active')
-            black.classList.remove('active')
         }
         color.onchange = function (e) {
             context.fillStyle = color.value;
@@ -211,7 +210,7 @@
             sizeRange.value = sizeNumber.value;
         }
         /******/
-
+        //适应窗口大小
         function autoSetCanvasSize(canvas) {
             setCanvasSize()
 
