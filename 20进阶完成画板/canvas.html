@@ -44,7 +44,7 @@
             height: 1.5em;
         }
 
-        .actions svg.active {
+        .actions svg .active {
             fill: red;
             transform: scale(1.2);
             transition: all 0.2s;
@@ -60,7 +60,7 @@
 
         .colors {
             position: absolute;
-            top: 30px;
+            top: 30%;
             left: 0;
             padding: 20px;
         }
@@ -106,232 +106,244 @@
 
 <body>
     <canvas id="canva" width="300" height="300"></canvas>
+
     <div id="actions" class="actions">
-        <svg class="icon active" id="pen">
-            <use xlink:href="#icon-pen"></use>
-        </svg>
-        <svg class="icon" id="eraser">
-            <use xlink:href="#icon-eraser"></use>
-        </svg>
-        <svg class="icon" id="clear">
-            <use xlink:href="#icon-clear"></use>
-        </svg>
-        <svg class="icon" id="save">
-            <use xlink:href="#icon-Save"></use>
-        </svg>
-    </div>
-    <ol class="colors">
-        <li id="black" class="black active"></li>
-        <li id="red" class="red"></li>
-        <li id="blue" class="blue"></li>
-        <li id="seletColor">+</li>
-        <li style="display:none;"><input type="color" name="" id="color"></li>
-    </ol>
-    <div class="sizes">
-        <input id="sizeRange" type="range" name="" max="10" min="1" value="5" step="1">
-        <input id="sizeNumber" type="number" name="" max="10" min="1" value="5" step="1">
-    </div>
+        <span id="pen">
+            <svg class="icon active">
+                <use xlink:href="#icon-pen"></use>
+            </svg>
+        </span>
+        <span id="eraser">
+            <svg class="icon">
+                <use xlink:href="#icon-eraser"></use>
+            </svg>
+        </span>
 
-    <script>
-        var canva = document.getElementById('canva');
-        var context = canva.getContext('2d');
-        var lineWidth = 5;
-        autoSetCanvasSize(canva)
-
-        listenToUser(canva)
+        <span id="clear">
+            <svg class="icon">
+                <use xlink:href="#icon-clear"></use>
+            </svg>
+        </span>
+        <span id="save">
+            <svg class="icon">
+                <use xlink:href="#icon-Save"></use>
+            </svg>
+        </span>
 
 
-        var eraserEnabled = false
-        pen.onclick = function () {
-            eraserEnabled = false
-            pen.classList.add('active')
-            eraser.classList.remove('active')
-        }
-        eraser.onclick = function () {
-            eraserEnabled = true
-            eraser.classList.add('active')
-            pen.classList.remove('active')
-        }
-        clear.onclick = function () {
-            context.clearRect(0, 0, canva.width, canva.height)
-        }
-        save.onclick = function () {
-            var url=canva.toDataURL("image/png")
-            var a=document.createElement('a')
-            document.body.appendChild(a)
-            a.href=url
-            a.download="canvas"
-            a.target="_blank"
-            a.click()
-        }
-        function removeActive(){
-            black.classList.add('active');
-            red.classList.remove('active')
-            blue.classList.remove('active')
-            seletColor.classList.remove('active')
-        }
-        black.onclick = function (e) {
-            context.fillStyle = 'black';
-            context.strokeStyle = 'black';
-            removeActive()
-            black.classList.add('active');
+        <ol class="colors">
+            <li id="black" class="black active"></li>
+            <li id="red" class="red"></li>
+            <li id="blue" class="blue"></li>
+            <li id="seletColor">+</li>
+            <li style="display:none;"><input type="color" name="" id="color"></li>
+        </ol>
+        <div class="sizes">
+            <input id="sizeRange" type="range" name="" max="10" min="1" value="5" step="1">
+            <input id="sizeNumber" type="number" name="" max="10" min="1" value="5" step="1">
+        </div>
 
-        }
-        red.onclick = function (e) {
-            context.fillStyle = 'red';
-            context.strokeStyle = 'red';
-            removeActive()
-            red.classList.add('active');
-        }
-        blue.onclick = function (e) {
-            context.fillStyle = 'blue';
-            context.strokeStyle = 'blue';
-            removeActive()
-            blue.classList.add('active');
-        }
-        seletColor.onclick = function () {
-            color.click();
-            removeActive()
-            seletColor.classList.add('active');
-        }
-        color.onchange = function (e) {
-            context.fillStyle = color.value;
-            context.strokeStyle = color.value;
-            seletColor.style.background = color.value;
-            console.log(seletColor.value);
-        }
+        <script>
+            var canva = document.getElementById('canva');
+            var context = canva.getContext('2d');
+            var lineWidth = 5;
+            autoSetCanvasSize(canva)
 
-        sizeRange.onchange = function () {
-            lineWidth = sizeRange.value;
-            sizeNumber.value = sizeRange.value;
-        }
-        sizeNumber.onchange = function () {
-            lineWidth = sizeNumber.value;
-            sizeRange.value = sizeNumber.value;
-        }
-        /******/
-        //适应窗口大小
-        function autoSetCanvasSize(canvas) {
-            setCanvasSize()
+            listenToUser(canva)
 
-            window.onresize = function () {
+
+            var eraserEnabled = false
+            pen.onclick = function () {
+                eraserEnabled = false
+                pen.classList.add('active')
+                eraser.classList.remove('active')
+            }
+            eraser.onclick = function () {
+                eraserEnabled = true
+                eraser.classList.add('active')
+                pen.classList.remove('active')
+            }
+            clear.onclick = function () {
+                context.clearRect(0, 0, canva.width, canva.height)
+            }
+            save.onclick = function () {
+                var url = canva.toDataURL("image/png")
+                var a = document.createElement('a')
+                document.body.appendChild(a)
+                a.href = url
+                a.download = "canvas"
+                a.target = "_blank"
+                a.click()
+            }
+
+            function removeActive() {
+                black.classList.add('active');
+                red.classList.remove('active')
+                blue.classList.remove('active')
+                seletColor.classList.remove('active')
+            }
+            black.onclick = function (e) {
+                context.fillStyle = 'black';
+                context.strokeStyle = 'black';
+                removeActive()
+                black.classList.add('active');
+
+            }
+            red.onclick = function (e) {
+                context.fillStyle = 'red';
+                context.strokeStyle = 'red';
+                removeActive()
+                red.classList.add('active');
+            }
+            blue.onclick = function (e) {
+                context.fillStyle = 'blue';
+                context.strokeStyle = 'blue';
+                removeActive()
+                blue.classList.add('active');
+            }
+            seletColor.onclick = function () {
+                color.click();
+                removeActive()
+                seletColor.classList.add('active');
+            }
+            color.onchange = function (e) {
+                context.fillStyle = color.value;
+                context.strokeStyle = color.value;
+                seletColor.style.background = color.value;
+                console.log(seletColor.value);
+            }
+
+            sizeRange.onchange = function () {
+                lineWidth = sizeRange.value;
+                sizeNumber.value = sizeRange.value;
+            }
+            sizeNumber.onchange = function () {
+                lineWidth = sizeNumber.value;
+                sizeRange.value = sizeNumber.value;
+            }
+            /******/
+            //适应窗口大小
+            function autoSetCanvasSize(canvas) {
                 setCanvasSize()
+
+                window.onresize = function () {
+                    setCanvasSize()
+                }
+
+                function setCanvasSize() {
+                    var pageWidth = document.documentElement.clientWidth
+                    var pageHeight = document.documentElement.clientHeight
+
+                    canvas.width = pageWidth
+                    canvas.height = pageHeight
+                }
             }
 
-            function setCanvasSize() {
-                var pageWidth = document.documentElement.clientWidth
-                var pageHeight = document.documentElement.clientHeight
-
-                canvas.width = pageWidth
-                canvas.height = pageHeight
+            function drawCircle(x, y, radius) {
+                context.beginPath()
+                context.arc(x, y, radius / 2, 0, Math.PI * 2);
+                context.fill()
             }
-        }
 
-        function drawCircle(x, y, radius) {
-            context.beginPath()
-            context.arc(x, y, radius / 2, 0, Math.PI * 2);
-            context.fill()
-        }
-
-        function drawLine(x1, y1, x2, y2) {
-            context.beginPath();
-            context.moveTo(x1, y1) // 起点
-            context.lineWidth = lineWidth
-            context.lineTo(x2, y2) // 终点
-            context.stroke()
-            context.closePath()
-        }
-
-        function listenToUser(canvas) {
-            var using = false
-            var lastPoint = {
-                x: undefined,
-                y: undefined
+            function drawLine(x1, y1, x2, y2) {
+                context.beginPath();
+                context.moveTo(x1, y1) // 起点
+                context.lineWidth = lineWidth
+                context.lineTo(x2, y2) // 终点
+                context.stroke()
+                context.closePath()
             }
-            //能力检测
-            if (document.body.ontouchstart !== undefined) {
-                //触屏设备
-                canvas.ontouchstart = function (e) {
-                    var x = e.touches[0].clientX
-                    var y = e.touches[0].clientY
-                    using = true
-                    if (eraserEnabled) {
-                        context.clearRect(x - 5, y - 5, 10, 10)
-                    } else {
-                        drawCircle(x, y, lineWidth)
-                        lastPoint = {
-                            "x": x,
-                            "y": y
+
+            function listenToUser(canvas) {
+                var using = false
+                var lastPoint = {
+                    x: undefined,
+                    y: undefined
+                }
+                //能力检测
+                if (document.body.ontouchstart !== undefined) {
+                    //触屏设备
+                    canvas.ontouchstart = function (e) {
+                        var x = e.touches[0].clientX
+                        var y = e.touches[0].clientY
+                        using = true
+                        if (eraserEnabled) {
+                            context.clearRect(x - 5, y - 5, 10, 10)
+                        } else {
+                            drawCircle(x, y, lineWidth)
+                            lastPoint = {
+                                "x": x,
+                                "y": y
+                            }
                         }
                     }
-                }
-                canvas.ontouchmove = function (e) {
-                    var x = e.touches[0].clientX
-                    var y = e.touches[0].clientY
+                    canvas.ontouchmove = function (e) {
+                        var x = e.touches[0].clientX
+                        var y = e.touches[0].clientY
 
-                    if (!using) {
-                        return
-                    }
-
-                    if (eraserEnabled) {
-                        context.clearRect(x - 5, y - 5, 10, 10)
-                    } else {
-                        var newPoint = {
-                            "x": x,
-                            "y": y
+                        if (!using) {
+                            return
                         }
-                        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
-                        lastPoint = newPoint
-                    }
-                }
-                canvas.ontouchend = function (e) {
-                    using = false
-                }
 
-            } else {
-                //非触屏设备
-                canvas.onmousedown = function (e) {
-                    var x = e.clientX
-                    var y = e.clientY
-                    using = true
-                    if (eraserEnabled) {
-                        context.clearRect(x - 5, y - 5, 10, 10)
-                    } else {
-                        drawCircle(x, y, lineWidth)
-                        lastPoint = {
-                            "x": x,
-                            "y": y
+                        if (eraserEnabled) {
+                            context.clearRect(x - 5, y - 5, 10, 10)
+                        } else {
+                            var newPoint = {
+                                "x": x,
+                                "y": y
+                            }
+                            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                            lastPoint = newPoint
                         }
                     }
-                }
-                canvas.onmousemove = function (e) {
-                    var x = e.clientX
-                    var y = e.clientY
-
-                    if (!using) {
-                        return
+                    canvas.ontouchend = function (e) {
+                        using = false
                     }
 
-                    if (eraserEnabled) {
-                        context.clearRect(x - 5, y - 5, 10, 10)
-                    } else {
-                        var newPoint = {
-                            "x": x,
-                            "y": y
+                } else {
+                    //非触屏设备
+                    canvas.onmousedown = function (e) {
+                        var x = e.clientX
+                        var y = e.clientY
+                        using = true
+                        if (eraserEnabled) {
+                            context.clearRect(x - 5, y - 5, 10, 10)
+                        } else {
+                            drawCircle(x, y, lineWidth)
+                            lastPoint = {
+                                "x": x,
+                                "y": y
+                            }
                         }
-                        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
-                        lastPoint = newPoint
+                    }
+                    canvas.onmousemove = function (e) {
+                        var x = e.clientX
+                        var y = e.clientY
+
+                        if (!using) {
+                            return
+                        }
+
+                        if (eraserEnabled) {
+                            context.clearRect(x - 5, y - 5, 10, 10)
+                        } else {
+                            var newPoint = {
+                                "x": x,
+                                "y": y
+                            }
+                            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+                            lastPoint = newPoint
+                        }
+
+                    }
+                    canvas.onmouseup = function (e) {
+                        using = false
                     }
 
-                }
-                canvas.onmouseup = function (e) {
-                    using = false
                 }
 
             }
-
-        }
-    </script>
+        </script>
 </body>
 
 </html>
